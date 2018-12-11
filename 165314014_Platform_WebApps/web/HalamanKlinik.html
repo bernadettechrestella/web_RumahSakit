@@ -167,7 +167,7 @@
                     var url = "http://202.94.83.190:8080/165314014_Platform_RSku/webresources/klinik";
 
                     xmlhttp.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
+                        if (this.readyState === 4 && this.status === 200) {
                             myFunction(this.responseText);
                         }
                     }
@@ -177,7 +177,7 @@
                     function myFunction(response) {
                         var arr = JSON.parse(response);
                         var i;
-                        var out = "<table>";
+                        var out = "<center><table border='2'>";
 
                         for (i = 0; i < arr.length; i++) {
                             out += "<tr><td>" +
@@ -188,7 +188,7 @@
                                     arr[i].spesialis;
 
                         }
-                        out += "</table>";
+                        out += "</table></center>";
                         document.getElementById("id01").innerHTML = out;
                     }
                 }
