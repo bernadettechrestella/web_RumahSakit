@@ -68,7 +68,7 @@
                     margin-top: 0;
                 }
             }
-            
+
             * {
                 box-sizing: border-box;
             }
@@ -123,8 +123,9 @@
 
             /* Style the content */
             .content {
-                margin-left: 200px;
+                margin-left: 150px;
                 padding-left: 20px;
+                margin-right: 50px;
             }
 
             ul {
@@ -192,93 +193,97 @@
         <ul>
             <li><a href="#news"> </a></li>
             <li class="dropdown">
-                <a href="javascript:void(0)" class="dropbtn">Login</a>
+                <a href="javascript:void(0)" class="dropbtn">Login Admin</a>
                 <div class="dropdown-content">
                     <a href="#">Masuk</a>
-                    <a href="#">Akun Baru</a>
+                    <!--<a href="#">Akun Baru</a>-->
                 </div>
             </li>
-            <li><a href="#news">Kontak</a></li>
+            <!--            <li><a href="#news">Kontak</a></li>-->
             <li><a href="HalamanMaps.html">Lokasi</a></li>
         </ul>
 
 
         <div class="content">
-            <section id="register" class="">
-            <hr>
-            <div class="container">
-                <center><h2>Form Tambah Pasien Baru</h2></center>
+            <!--<section id="register" class="">-->
+            <!--<hr>-->
+            <!--<div class="container">-->
+            <center><h2>Form Tambah Pasien Baru</h2></center>
 
-                <form onsubmit="return make_json(this);" method="POST">
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="nik">NIK</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="nik" name="nik" placeholder="Masukkan Nomor Induk Kependudukan..">
-                        </div>
+            <form onsubmit="return make_json(this);" method="POST">
+                <div class="row">
+                    <div class="col-25">
+                        <label for="nik">NIK</label>
                     </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="nama">Nama Pasien</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="nama" name="nama" placeholder="Masukkan Nama Pasien..">
-                        </div>
+                    <div class="col-75">
+                        <input type="text" id="nik" name="nik" placeholder="Masukkan Nomor Induk Kependudukan..">
                     </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="alamat">Alamat</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="alamat" name="alamat" placeholder="Masukkan Alamat Lengkap..">
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="nama">Nama Pasien</label>
                     </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="ttl">Tanggal Lahir</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="date" id="ttl" name="ttl">
-                        </div>
+                    <div class="col-75">
+                        <input type="text" id="nama" value="" name="nama" placeholder="Masukkan Nama Pasien..">
                     </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="jk">Jenis Kelamin</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="jk" name="jk" placeholder="Laki-Laki/Perempuan..">
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="alamat">Alamat</label>
                     </div>
-                    <div class="clearfix">
-                        <center><button id="Save" type="submit" class="signupbtn">Simpan</button></center>
+                    <div class="col-75">
+                        <input type="text" id="alamat" value="" name="alamat" placeholder="Masukkan Alamat Lengkap..">
                     </div>
-                </form>
-            </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="tanggalLahir">Tanggal Lahir</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="date" id="tanggalLahir" name="tanggalLahir" value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="kelamin">Jenis Kelamin</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="kelamin" value="" name="kelamin" placeholder="Laki-Laki/Perempuan..">
+                    </div>
+                </div>
+                <!--<br>-->
+                <!--<div class="clearfix">-->
+                <br>
+                <center><button id="Save" type="submit" class="signupbtn">Simpan</button></center>
+                <!--</div>-->
+            </form>
             <pre id="output">
             </pre>
-
-            <script>
-                function make_json(form) {
-                    var json = {
-                        "nik": form.nik.value,
-                        "nama": form.nama.value,
-                        "alamat": form.alamat.value,
-                        "ttl": form.ttl.value,
-                        "jk": form.jk.value
-                    };
-                    var html = JSON.stringify(json, 0, 100);
-                    var Url = "http://202.94.83.190:8080/165314014_Platform_RSku/webresources/pasien/addPasien";
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('POST', Url, false);
-                    xhr.setRequestHeader("Content-type", "application/json");
-                    xhr.send(html);
-
-                    document.getElementById("output").innerHTML = "Pendaftaran Berhasil";
-                    return false;
-                }
-            </script>
-        </section>
         </div>
+
+
+        <script>
+            function make_json(form) {
+                var json = {
+//                        "noRm": form.nik.value;
+                    "nik": form.nik.value,
+                    "nama": form.nama.value,
+                    "alamat": form.alamat.value,
+                    "tanggalLahir": form.tanggalLahir.value,
+                    "kelamin": form.kelamin.value
+                };
+                var html = JSON.stringify(json, 0, 100);
+                var Url = "http://202.94.83.190:8080/165314014_Platform_RSku/webresources/pasien/addPasien";
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', Url, false);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
+
+                document.getElementById("output").innerHTML = "Pendaftaran Berhasil";
+                return false;
+            }
+        </script>
+        <!--</section>-->
+        <!--</div>-->
     </body>
 </html>

@@ -122,18 +122,19 @@
             <a href="HalamanTambahDokter.html">Tambah Dokter</a>
             <a href="HalamanTambahKlinik.html">Tambah Klinik</a>
             <a href="HalamanAntriKlinik.html">Tambah Pasien</a>
+            <a href="HalamanCariPasien.html">Cari Pasien</a>
         </div>
 
         <ul>
-            <li><a href="#news"> </a></li>
+            <li><a href="index.html">Logout</a></li>
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn">Login</a>
                 <div class="dropdown-content">
                     <a href="HalamanLogin.html">Masuk</a>
-                    <a href="#">Akun Baru</a>
+                    <!--<a href="#">Akun Baru</a>-->
                 </div>
             </li>
-            <li><a href="#news">Kontak</a></li>
+            <!--<li><a href="#news">Kontak</a></li>-->
             <li><a href="HalamanMaps.html">Lokasi</a></li>
         </ul>
 
@@ -143,6 +144,7 @@
             <center><button class="button" type="button" onclick="loadDoc()" id="btn">Daftar Dokter</button><br><br></center>
             <center><button class="button" type="button" onclick="loadDoc2()" id="btn">Daftar Klinik</button><br><br></center>
             <center><button class="button" type="button" onclick="loadDoc3()" id="btn">Daftar Pasien</button><br><br></center>
+            <center><button class="button" type="button" onclick="loadDoc4()" id="btn">Daftar Antrian</button><br><br></center>
 
             <div id="id01"></div>
 
@@ -242,6 +244,42 @@
                                     arr[i].tanggalLahir +
                                     " </td><td> " +
                                     arr[i].kelamin +
+                                    " </td></tr>";
+                        }
+                        out += "</table></center>";
+                        document.getElementById("id01").innerHTML = out;
+                    }
+                }
+                
+                function loadDoc4() {
+                    var xmlhttp = new XMLHttpRequest();
+
+                    var url = "http://202.94.83.190:8080/165314014_Platform_RSku/webresources/antrian";
+
+                    xmlhttp.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
+                            myFunction(this.responseText);
+                        }
+                    };
+                    xmlhttp.open("GET", url, true);
+                    xmlhttp.send();
+
+                    function myFunction(response) {
+                        var arr = JSON.parse(response);
+                        var i;
+                        var out = "<center><table border='2'>";
+
+                        for (i = 0; i < arr.length; i++) {
+                            out += " <tr><td>" +
+                                    arr[i].id +
+                                    " </td><td> " +
+                                    arr[i].tanggal +
+                                    " </td><td> " +
+                                    arr[i].noRm +
+                                    " </td><td> " +
+                                    arr[i].nama +
+                                    " </td><td> " +
+                                    arr[i].alamat +
                                     " </td></tr>";
                         }
                         out += "</table></center>";

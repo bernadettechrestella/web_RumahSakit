@@ -183,98 +183,105 @@
 
         <div class="sidenav">
             <a href="index.html">Home</a>
-            <a href="HalamanTambahDokter.html">Tambah Dokter</a>
-            <a href="HalamanTambahKlinik.html">Tambah Klinik</a>
-            <a href="HalamanAntriKlinik.html">Tambah Pasien</a>
+            <a href="HalamanPasienBaru.html">Pendaftaran Pasien Baru</a>
+            <a href="HalamanAntriKlinik.html">Daftar Rawat Jalan</a>
+            <a href="HalamanKlinik.html">Lihat Daftar Klinik</a>
+            <a href="HalamanDokter.html">Lihat Daftar Dokter</a>
         </div>
 
         <ul>
             <li><a href="#news"> </a></li>
             <li class="dropdown">
-                <a href="javascript:void(0)" class="dropbtn">Login</a>
+                <a href="javascript:void(0)" class="dropbtn">Login Admin</a>
                 <div class="dropdown-content">
-                    <a href="#">Masuk</a>
-                    <a href="#">Akun Baru</a>
+                    <a href="HalamanLogin.html">Masuk</a>
+                    <!--<a href="#">Akun Baru</a>-->
                 </div>
             </li>
-            <li><a href="#news">Kontak</a></li>
+            <!--<li><a href="#news">Kontak</a></li>-->
             <li><a href="HalamanMaps.html">Lokasi</a></li>
         </ul>
 
 
         <div class="content">
             <form onsubmit="return make_json(this);" method="POST">
-            <center><h2>Form Daftar Rawat Jalan</h2></center>
-            <div class="row">
-                <div class="col-25">
-                    <label for="nik">NIK</label>
+                <center><h2>Form Daftar Rawat Jalan</h2></center>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="noRm">NIK / Nomor Rekam Medis</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="noRm" name="noRm" placeholder="Masukkan NIK / no RM">
+                    </div>
                 </div>
-                <div class="col-75">
-                    <input type="text" id="nik" name="nik" placeholder="Masukkan Nomor Induk Kependudukan.." onchange="loadDoc()">
-                </div>
-            </div>
+                <br>
+                <center><button id="btn" onclick="loadDoc()" type="button">Cari</button></center>
 
-            <center><button id="btn" onclick="loadDoc()" type="button">Cari</button></center>
+                <p id="output"></p>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="nama">Nama Pasien</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="nama" name="nama" value="">
+                    </div>
+                </div>
 
-            <p id="output"></p>
-            <div class="row">
-                <div class="col-25">
-                    <label for="nama">Nama Pasien</label>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="alamat">Alamat</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="alamat" name="alamat" value="">
+                    </div>
                 </div>
-                <div class="col-75">
-                    <input type="text" id="nama" name="nama">
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-25">
-                    <label for="alamat">Alamat</label>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="nik">NIK</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="nik" name="nik" value="">
+                    </div>
                 </div>
-                <div class="col-75">
-                    <input type="text" id="alamat" name="alamat">
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-25">
-                    <label for="noRM">Nomor Rekam Medis</label>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="tanggal">Tanggal Rawat Jalan</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="Date" id="tanggal" name="tanggal">
+                    </div>
                 </div>
-                <div class="col-75">
-                    <input type="text" id="noRM" name="noRM">
+                <div class="row">
+                    <div class="col-25">
+                        <label>Nama Klinik</label>
+                    </div>
+                    <div class="col-75">
+                        <select id="namaKlinik" name="klinik">
+                            <option style="color: black" label="--pilih klinik--"></option>
+                            <option style="color: black" label="anak">anak</option>
+                            <option style="color: black" label="mata">mata</option>
+                            <option style="color: black" label="gigi">gigi</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-25">
-                    <label for="ttl">Tanggal Lahir</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="ttl" name="ttl">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="jk">Jenis Kelamin</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="jk" name="jk">
-                </div>
-            </div>
-            <center><input type="submit" value="Tambah"/></center>
-            <pre id="berhasil">
-            </pre>
+                <center><input class="" type="submit" value="Tambah"/></center>
+                
+                <pre id="berhasil">
+                </pre>
             </form>
         </div>
-        
-            <script>
-                function loadDoc() {
 
-                var url = "http://202.94.83.190:8080/165314016_maps/webresources/Pasien/cariPasien?noRm=" + nrm.value;
+        <script>
+            function loadDoc() {
+
+                var url = "http://202.94.83.190:8080/165314014_Platform_RSku/webresources/pasien/cariPasien?noRm=" + noRm.value;
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", url, true);
                 xhttp.send();
                 xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
+                    if (this.readyState === 4 && this.status === 200) {
                         var objj = JSON.parse(this.responseText);
                         document.getElementById("nama").value = objj.nama;
                         document.getElementById("nik").value = objj.nik;
@@ -294,7 +301,7 @@
                 };
                 var html = JSON.stringify(json, 0, 100);
 
-                var Url = "http://202.94.83.190:8080/165314016_maps/webresources/Antrian/addAntrian";
+                var Url = "http://202.94.83.190:8080/165314014_Platform_RSku/webresources/antrian/addAntrian";
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', Url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
@@ -303,7 +310,7 @@
                 document.getElementById("berhasil").innerHTML = "Pendaftaran Berhasil";
                 return false;
             }
-            </script>
+        </script>
 
     </body>
 </html>
